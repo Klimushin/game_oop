@@ -2,3 +2,4 @@
 venv/
 main.py
 __pycache__/
+*.txt
