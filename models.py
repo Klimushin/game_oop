@@ -114,4 +114,5 @@ class Player:
             print("Enemy won!")
             self.decrease_lives()
         else:
+            enemy.decrease_lives()
             print("Defense successful!")
