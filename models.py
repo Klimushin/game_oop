@@ -63,11 +63,9 @@ class Player:
         """
         if attack == defense:
             return 0
-        elif attack == settings.WIZARD and defense == settings.WARRIOR:
-            return 1
-        elif attack == settings.WARRIOR and defense == settings.ROBBER:
-            return 1
-        elif attack == settings.ROBBER and defense == settings.WIZARD:
+        elif ((attack == settings.WIZARD and defense == settings.WARRIOR) or
+              (attack == settings.WARRIOR and defense == settings.ROBBER) or
+              (attack == settings.ROBBER and defense == settings.WIZARD)):
             return 1
         else:
             return -1
@@ -79,6 +77,7 @@ class Player:
         """
         self.lives -= 1
         if self.lives == 0:
+            GameOver.scores(name=self.name, score=self.score)
             raise GameOver(self)
 
     def attack(self, enemy):
@@ -97,8 +96,8 @@ class Player:
             enemy.decrease_lives()
             self.score += 1
         else:
-            print("You missed!")
             self.decrease_lives()
+            print("You missed!")
 
     def defense(self, enemy):
         """

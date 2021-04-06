@@ -23,7 +23,8 @@ def play():
             print(f"All commands: {', '.join(ALL_COMMANDS)}.")
         if command == 'show scores':
             with open('scores.txt', 'r') as scores:
-                print(scores.readlines())
+                for lines in scores.readlines():
+                    print(lines.replace('\n', ''))
         if command == "exit":
             raise KeyboardInterrupt
 
@@ -38,7 +39,7 @@ def play():
                     level += 1
                     enemy = Enemy(level=level)
                     player.score += 5
-                    print(f"You WON. Your score: {player.score}. Level: {level}")
+                    print(f"You WON. Your score: {player.score}. lives: {level}")
 
 
 if __name__ == '__main__':
